@@ -219,18 +219,24 @@ function getParticipantCode() {
   }
 }
 
+function getEndOfPath(path) {
+  let locations = path.split("/");
+  let n = locations.length;
+  return locations[n-1];
+}
+
 function __main__() {
-  let path = window.location.pathname;
-  if (path == "/pages/results.html") {
+  let path = getEndOfPath(window.location.pathname);
+  if (path == "results.html") {
     setIndexQuery(getParameter("i") + 1, '.home a');
     loadGrid();
-  } else if (path == "/pages/record.html") {
+  } else if (path == "record.html") {
     getCamera();
     bindRecord();
-  } else if (path == "/pages/video.html") {
+  } else if (path == "video.html") {
     setIndexQuery(getParameter("i"), '.next');
     getVideo();
-  } else if (path == "/index.html" || path == "/") {
+  } else if (path == "index.html" || path == "") {
     bindParticipantCode();
   }
 
