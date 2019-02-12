@@ -1,0 +1,166 @@
+{
+  "product": "interview Flow",
+  "version": 2.1,
+  "releaseDate": "2019-02-11T00:00:00.000Z",
+  "model": "http://www.objgen.com/json/models/PjDl",
+  "N_accuracy": 1,
+  "N_modality": 3,
+  "sample": [
+    {
+      "Sign": "Yawn",
+      "Set": "Head",
+      "Index": 7,
+      "Display": 0
+    }
+  ],
+  "accuracy": [
+    {
+      "Sign": "Race",
+      "Set": "Chest",
+      "Index": 26,
+      "Display": 0
+    },
+    {
+      "Sign": "Road",
+      "Set": "Chest",
+      "Index": 12,
+      "Display": 0
+    },
+    {
+      "Sign": "Roommate",
+      "Set": "Chest",
+      "Index": 0,
+      "Display": 0
+    },
+    {
+      "Sign": "Addicted",
+      "Set": "Head",
+      "Index": 5,
+      "Display": 0
+    },
+    {
+      "Sign": "Ruin",
+      "Set": "Chest",
+      "Index": 0,
+      "Display": 0
+    },
+    {
+      "Sign": "Pancake",
+      "Set": "Chest",
+      "Index": 17,
+      "Display": 0
+    },
+    {
+      "Sign": "Ugly",
+      "Set": "Head",
+      "Index": -1,
+      "Display": 0
+    },
+    {
+      "Sign": "Mosquito",
+      "Set": "Head",
+      "Index": 22,
+      "Display": 0
+    },
+    {
+      "Sign": "Balloon",
+      "Set": "Head",
+      "Index": -1,
+      "Display": 0
+    },
+    {
+      "Sign": "Spread",
+      "Set": "Chest",
+      "Index": 0,
+      "Display": 0
+    },
+    {
+      "Sign": "Octopus",
+      "Set": "Chest",
+      "Index": 21,
+      "Display": 0
+    },
+    {
+      "Sign": "Trouble",
+      "Set": "Head",
+      "Index": 8,
+      "Display": 0
+    },
+    {
+      "Sign": "Match",
+      "Set": "Chest",
+      "Index": -1,
+      "Display": 0
+    },
+    {
+      "Sign": "Tan",
+      "Set": "Head",
+      "Index": 16,
+      "Display": 0
+    },
+    {
+      "Sign": "Owl",
+      "Set": "Head",
+      "Index": 7,
+      "Display": 0
+    }
+  ],
+  "modality": [
+    {
+      "Sign": "Potato",
+      "Set": "Chest",
+      "Index": 4,
+      "Display": 1
+    },
+    {
+      "Sign": "Stuck",
+      "Set": "Head",
+      "Index": 8,
+      "Display": 1,
+      "": {}
+    },
+    {
+      "Sign": "Bee",
+      "Set": "Head",
+      "Index": 4,
+      "Display": 1
+    },
+    {
+      "Sign": "Friendly",
+      "Set": "Head",
+      "Index": 6,
+      "Display": 0
+    },
+    {
+      "Sign": "Farm",
+      "Set": "Head",
+      "Index": 9,
+      "Display": 0
+    },
+    {
+      "Sign": "Cereal",
+      "Set": "Head",
+      "Index": 2,
+      "Display": 0
+    },
+    {
+      "Sign": "Introduce",
+      "Set": "Chest",
+      "Index": 1,
+      "Display": 2
+    },
+    {
+      "Sign": "Hard",
+      "Set": "Chest",
+      "Index": 3,
+      "Display": 2,
+      "": {}
+    },
+    {
+      "Sign": "Wide",
+      "Set": "Chest",
+      "Index": 4,
+      "Display": 2
+    }
+  ]
+}
