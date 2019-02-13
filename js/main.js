@@ -227,6 +227,13 @@ function getEndOfPath(path) {
 
 function __main__() {
   let path = getEndOfPath(window.location.pathname);
+  getInterviewOrder(function(interview) {
+    console.log(interview.length)
+    if (interview.length <= getParameter("i")) {
+      console.log('hey')
+      $('.content').html('<h1>Thank you</h1>');
+    }
+  })
   if (path == "results.html") {
     setIndexQuery(getParameter("i") + 1, '.home a');
     loadGrid();
