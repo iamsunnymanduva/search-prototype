@@ -180,7 +180,7 @@ function getVideo() {
 }
 
 function getInterviewOrder(callback) {
-  loadJSON("flow.json", function(flow) {
+  loadJSON("pilot-flow.json", function(flow) {
     let sample = flow.sample;
     let accuracy = flow.accuracy;
     let modality = flow.modality;

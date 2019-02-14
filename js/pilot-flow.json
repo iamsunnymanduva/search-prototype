@@ -1,0 +1,68 @@
+{
+  "product": "pilot Flow",
+  "version": 1,
+  "releaseDate": "2019-02-13T00:00:00.000Z",
+  "model": "http://www.objgen.com/json/models/suWZ",
+  "N_accuracy": 1,
+  "N_modality": 1,
+  "sample": [],
+  "accuracy": [],
+  "modality": [
+    {
+      "Sign": "Potato",
+      "Set": "Chest",
+      "Index": 2,
+      "Display": 0
+    },
+    {
+      "Sign": "Stuck",
+      "Set": "Head",
+      "Index": 1,
+      "Display": 1,
+      "": {}
+    },
+    {
+      "Sign": "Bee",
+      "Set": "Head",
+      "Index": 4,
+      "Display": 2
+    },
+    {
+      "Sign": "Friendly",
+      "Set": "Head",
+      "Index": 0,
+      "Display": 0
+    },
+    {
+      "Sign": "Farm",
+      "Set": "Head",
+      "Index": 3,
+      "Display": 1
+    },
+    {
+      "Sign": "Cereal",
+      "Set": "Head",
+      "Index": 2,
+      "Display": 2
+    },
+    {
+      "Sign": "Introduce",
+      "Set": "Chest",
+      "Index": 4,
+      "Display": 0
+    },
+    {
+      "Sign": "Hard",
+      "Set": "Chest",
+      "Index": 5,
+      "Display": 1,
+      "": {}
+    },
+    {
+      "Sign": "Wide",
+      "Set": "Chest",
+      "Index": 0,
+      "Display": 2
+    }
+  ]
+}
