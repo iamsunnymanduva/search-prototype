@@ -2,6 +2,7 @@
 
 $background-color: #F5F5F5;
 $border-color: #cccccc;
+$buttons-color: #4997ff;
 
 // Mixins
 
@@ -90,7 +91,7 @@ a {
   .next {
     cursor: pointer;
     padding: .5rem 1rem;
-    background: #4997ff;
+    background: $buttons-color;
 
     &:hover {
       opacity: .7;
@@ -363,6 +364,46 @@ a {
     background-color: #f64747;
   }
 }
+
+// back to top button by Matthew Cain
+
+#button {
+  display: inline-block;
+  background-color: $buttons-color;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s,
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#button::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#button:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#button:active {
+  background-color: #555;
+}
+#button.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 
 // nice input by Chris Sevijella
 

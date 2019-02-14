@@ -225,6 +225,23 @@ function getEndOfPath(path) {
   return locations[n-1];
 }
 
+function backToTop() {
+  var btn = $('#button');
+
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 300) {
+      btn.addClass('show');
+    } else {
+      btn.removeClass('show');
+    }
+  });
+
+  btn.on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop:0}, '300');
+  });
+}
+
 function __main__() {
   let path = getEndOfPath(window.location.pathname);
   getInterviewOrder(function(interview) {
@@ -237,6 +254,7 @@ function __main__() {
   if (path == "results.html") {
     setIndexQuery(getParameter("i") + 1, '.home a');
     loadGrid();
+    backToTop();
   } else if (path == "record.html") {
     getCamera();
     bindRecord();
