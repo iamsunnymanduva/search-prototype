@@ -71,36 +71,51 @@ function getQuery(i,p) {
 function loadGrid() {
   getInterviewOrder(function(interview) {
     let curr = interview[getParameter("i")];
-    loadJSON("data.json", function(json) {
+    loadJSON("flow.json", function(json) {
       if (curr) {
-        var sign_group = curr["Set"];
+        var location = curr["Location"];
+        var handshape = curr["Handshape"];
         var sign = curr["Sign"];
         var index = curr["Index"];
-        var signs = shuffle(json.Signs[sign_group]);
-        placeAt(sign, signs, index);
-        setDisplay(curr["Display"]);
+        var similar = curr["Similar"];
+        var similar_h = json.Signs[handshape];
+        var similar_l = json.Signs[location];
+        signs = generateResults(sign, similar, similar_h, similar_l, index);
+        // Quick fix for counterbalancing
+        setDisplay(interview.length);
       } else {
         var signs = shuffle(json.Signs["Head"]);
       }
 
       let filler = shuffle(json.Signs["Random"]);
-      let grid = signs.concat(filler);
+      const MAX = 100;
+      let grid = signs.concat(filler.splice(0,MAX - signs.length -1));
+      grid.splice(index,0,sign);
 
       let staticImage = !($('.results-grid').hasClass('word') || $('.results-grid').hasClass('gif'));
       grid.forEach(function(name) {
         addImage(name, staticImage);
       });
       bindResults(staticImage);
+      $('.number-of-signs').text(grid.length);
     });
   });
 }
 
-function setDisplay(mode) {
+function setDisplay(length) {
+  // Quick fix for counterbalancing
+  let p = getParameter("p");
+  let i = getParameter("i");
+  let mode = p%2;
+  if (i < length/2) {
+    mode += 1;
+  }
   if (mode == 1) {
-    $('.results-grid').addClass('word');
-  } else if (mode == 2) {
     $('.results-grid').addClass('gif');
   }
+  // else if (mode == 2) {
+  //   $('.results-grid').addClass('word');
+  // }
 }
 
 function addImage(name, staticImage) {
@@ -151,15 +166,42 @@ function shuffle(o) {
 	return o;
 }
 
-function placeAt(el, arr, index) {
-  let curr = arr.indexOf(el);
-  if (index > -1) {
-    t = arr[index];
-    arr[index] = arr[curr];
-    arr[curr] = t;
-  } else {
-    arr.splice(curr, 1);
+function generateResults(el, similar, handshape, location, index) {
+  deleteElement(el, handshape);
+  deleteElement(el, location);
+  for (let i=0;i<similar.length;i++) {
+    deleteElement(similar[i], handshape);
   }
+  shuffle(similar);
+  shuffle(handshape);
+  shuffle(location);
+
+  let before = [];
+  let after = [];
+  let similar_fill = similar.length - index;
+  let handshape_fill = handshape.length - Math.abs(similar_fill);
+  if (similar_fill > 0) {
+    before = similar.splice(0, index);
+    after = similar.concat(handshape).concat(location);
+  } else if (handshape_fill > 0) {
+    let fill = Math.abs(similar_fill);
+    before = similar.concat(handshape.splice(0,fill));
+    after = handshape.concat(location);
+  } else {
+    // Assuming similar + handshape + location > index
+    let fill = Math.abs(handshape_fill);
+    before = similar.concat(handshape).concat(location.splice(0,fill));
+    after = location;
+  }
+
+  shuffle(before);
+
+  return before.concat(after);
+}
+
+function deleteElement(el, arr) {
+  let curr = arr.indexOf(el);
+  arr.splice(curr,1);
 }
 
 function getParameter(p) {
@@ -180,13 +222,11 @@ function getVideo() {
 }
 
 function getInterviewOrder(callback) {
-  loadJSON("pilot-flow.json", function(flow) {
-    let sample = flow.sample;
-    let accuracy = flow.accuracy;
-    let modality = flow.modality;
+  loadJSON("flow.json", function(flow) {
+    let interview = flow.Flow;
     let p = getParameter("p");
 
-    interview = sample.concat(LatinSquare(accuracy, p, flow.N_accuracy)).concat(LatinSquare(modality,p, flow.N_modality));
+    interview = LatinSquare(interview, p, 1);
     callback(interview);
   });
 }
@@ -195,8 +235,8 @@ function LatinSquare(arr, p, n) {
   let size = arr.length;
   let move = ((p-1)%(size/n))*n;
   if (move > 0) {
-    let displace = arr.splice(size-move);
-    return arr = displace.concat(arr);
+    let displace = arr.splice(0,move);
+    return arr = arr.concat(displace);
   }
   return arr;
 }
@@ -245,9 +285,7 @@ function backToTop() {
 function __main__() {
   let path = getEndOfPath(window.location.pathname);
   getInterviewOrder(function(interview) {
-    console.log(interview.length)
     if (interview.length <= getParameter("i")) {
-      console.log('hey')
       $('.content').html('<h1>Thank you</h1>');
     }
   })

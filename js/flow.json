@@ -1,166 +1,755 @@
 {
-  "product": "interview Flow",
-  "version": 2.1,
-  "releaseDate": "2019-02-11T00:00:00.000Z",
-  "model": "http://www.objgen.com/json/models/PjDl",
+  "product": "Sign lists + Flow",
+  "version": 2,
+  "releaseDate": "2019-02-20T00:00:00.000Z",
+  "model": "http://www.objgen.com/json/models/LqPZn",
   "N_accuracy": 1,
   "N_modality": 3,
-  "sample": [
+  "Signs": {
+    "1-1": [
+      "Alcohol",
+      "Announce",
+      "Answer",
+      "Become",
+      "Business",
+      "But",
+      "Cigarette",
+      "Conflict",
+      "During",
+      "Famous",
+      "Finally",
+      "Happen",
+      "Headache",
+      "Hurt",
+      "Laugh",
+      "Nervous",
+      "Parallel",
+      "Pay-attention",
+      "Sarcasm",
+      "Smile",
+      "Square",
+      "Struggle",
+      "Think+opposite",
+      "Wheel",
+      "Wheelchair"
+    ],
+    "4-5": [
+      "Abandon",
+      "Africa",
+      "Color",
+      "Crazy",
+      "Dirty",
+      "Fancy",
+      "Farm",
+      "Fine",
+      "Fingerspell",
+      "Formerly",
+      "Grandfather",
+      "Grandmother",
+      "Ignore",
+      "Jewish",
+      "Polite",
+      "Pregnant",
+      "Rainbow",
+      "Scotland",
+      "Talk-to-self",
+      "Wolf"
+    ],
+    "bent_5": [
+      "Ball",
+      "Curly",
+      "Disappear",
+      "Freeze",
+      "Globe",
+      "Hurricane",
+      "Include",
+      "Learn",
+      "Light-match",
+      "Messed-up",
+      "Mix-up",
+      "Pea-brain",
+      "People+audience",
+      "Poor",
+      "Puff-smoke",
+      "Radio",
+      "Roommate",
+      "Save-money",
+      "Storm",
+      "To-fool",
+      "Want"
+    ],
+    "c": [
+      "Cafeteria",
+      "Character",
+      "Chicago",
+      "Choke",
+      "Christmas",
+      "Cousin",
+      "Drink",
+      "Episcopal",
+      "Force",
+      "Giraffe",
+      "Look",
+      "Member",
+      "Milk",
+      "Misunderstand",
+      "Old",
+      "Orange",
+      "Pig"
+    ],
+    "f": [
+      "Cat",
+      "Checking-account",
+      "Coins",
+      "Cooperate",
+      "Dye",
+      "Family",
+      "Feedback",
+      "Free",
+      "Important",
+      "Interpret",
+      "None",
+      "Olympics",
+      "Replace",
+      "Sentence",
+      "Sew",
+      "Simple",
+      "Vote"
+    ],
+    "open_8": [
+      "Australia",
+      "Awful",
+      "Computer",
+      "Contact",
+      "Earth",
+      "Empty",
+      "Excited",
+      "Flashlight",
+      "Hate",
+      "Internet",
+      "Jesus",
+      "Melon",
+      "Sick",
+      "Tend",
+      "Touch-heart"
+    ],
+    "v": [
+      "Bread",
+      "Bridge",
+      "Dance",
+      "Either",
+      "Everyday",
+      "Fork",
+      "Funeral",
+      "Intercourse",
+      "Lose-weight",
+      "Misunderstand",
+      "Predict",
+      "Raccoon",
+      "Read",
+      "Ride",
+      "Salt",
+      "Sit",
+      "Toast",
+      "Train",
+      "Twice",
+      "Very",
+      "Watch"
+    ],
+    "y": [
+      "Blond",
+      "Country",
+      "Cow",
+      "Drunk",
+      "From-now-on",
+      "Impossible",
+      "Kid",
+      "Play",
+      "Silly",
+      "Stay",
+      "Subway",
+      "Swear",
+      "Uniform",
+      "Whale",
+      "Why",
+      "Yellow",
+      "Yesterday"
+    ],
+    "Head": [
+      "Know",
+      "Why",
+      "Stupid",
+      "Beard",
+      "Nose",
+      "Eat",
+      "Stuck",
+      "Picture",
+      "Farm",
+      "Apple",
+      "Experience",
+      "Glasses",
+      "Hair",
+      "Drink",
+      "Water",
+      "Mustache",
+      "Addicted",
+      "Bee",
+      "Owl",
+      "Mosquito",
+      "Rat",
+      "Girl",
+      "Boy",
+      "Balloon",
+      "Friendly",
+      "Summer",
+      "Cereal",
+      "Ugly",
+      "Strict",
+      "Tan",
+      "Yawn",
+      "Trouble",
+      "Who",
+      "Good",
+      "Bad"
+    ],
+    "Chest": [
+      "Work",
+      "School",
+      "Paper",
+      "Race",
+      "Shoes",
+      "Socks",
+      "Write",
+      "Study",
+      "Marry",
+      "Football",
+      "Fight",
+      "Book",
+      "Coffee",
+      "Make",
+      "Hard",
+      "Potato",
+      "Bite",
+      "Hurt",
+      "Ruin",
+      "Road",
+      "More",
+      "Kiss",
+      "Wide",
+      "Focus",
+      "General",
+      "Match",
+      "Roommate",
+      "Octopus",
+      "Spread",
+      "Island",
+      "Pancake",
+      "Cooking",
+      "Kitchen",
+      "Merge",
+      "Introduce"
+    ],
+    "Random": [
+      "A lot",
+      "Foreign",
+      "Steal",
+      "Abortion",
+      "Get",
+      "Steam",
+      "Advise",
+      "Go",
+      "Stimulate",
+      "All night",
+      "Good luck",
+      "Sweden",
+      "Alone",
+      "Grammar",
+      "Swing",
+      "Applause",
+      "Greece",
+      "System",
+      "Appointment",
+      "Ignition off",
+      "Take break",
+      "Association",
+      "Line",
+      "Tall",
+      "Authority",
+      "Nigeria",
+      "Tape",
+      "Beautiful",
+      "Orthodox",
+      "Temple",
+      "Big",
+      "Penis",
+      "Thank you",
+      "Breathe",
+      "Pillow",
+      "Thief",
+      "Checkers",
+      "Play around",
+      "Thin",
+      "Close window",
+      "Postpone",
+      "Thursday",
+      "Close",
+      "Priest",
+      "Tie",
+      "Collect",
+      "Puerto rico",
+      "Tiny",
+      "Cook",
+      "Really",
+      "Trim hedge",
+      "Cry",
+      "Reduce",
+      "Triple",
+      "Dim",
+      "Responsibility",
+      "Trumpet",
+      "Distribute",
+      "San Francisco",
+      "Try",
+      "E-mail",
+      "Sarcasm",
+      "Wag",
+      "Egypt",
+      "Secret",
+      "Waist",
+      "Encyclopedia",
+      "See saw",
+      "Walk",
+      "Express",
+      "Shave",
+      "What",
+      "Flat",
+      "Speech",
+      "Wrong"
+    ]
+  },
+  "Flow": [
     {
-      "Sign": "Yawn",
-      "Set": "Head",
-      "Index": 7,
-      "Display": 0
-    }
-  ],
-  "accuracy": [
-    {
-      "Sign": "Race",
-      "Set": "Chest",
-      "Index": 26,
-      "Display": 0
+      "Sign": "Cigarette",
+      "Location": "Chest",
+      "Handshape": "1-1",
+      "Index": 3,
+      "Display": 0,
+      "Similar": [
+        "Alcohol",
+        "Conflict",
+        "Happen",
+        "Answer",
+        "During",
+        "Parallel"
+      ]
     },
     {
-      "Sign": "Road",
-      "Set": "Chest",
-      "Index": 12,
-      "Display": 0
+      "Sign": "Scotland",
+      "Location": "Chest",
+      "Handshape": "4-5",
+      "Index": 8,
+      "Display": 0,
+      "Similar": [
+        "Rainbow",
+        "Fine"
+      ]
+    },
+    {
+      "Sign": "Curly",
+      "Location": "Head",
+      "Handshape": "bent_5",
+      "Index": 18,
+      "Display": 0,
+      "Similar": [
+        "Ball",
+        "Globe",
+        "Storm"
+      ]
+    },
+    {
+      "Sign": "Chicago",
+      "Location": "Chest",
+      "Handshape": "c",
+      "Index": 38,
+      "Display": 0,
+      "Similar": [
+        "Christmas",
+        "Cafeteria",
+        "Character",
+        "Cousin",
+        "Drink"
+      ]
+    },
+    {
+      "Sign": "Olympics",
+      "Location": "Chest",
+      "Handshape": "f",
+      "Index": 0,
+      "Display": 0,
+      "Similar": [
+        "Cooperate",
+        "Simple",
+        "Sew"
+      ]
+    },
+    {
+      "Sign": "Internet",
+      "Location": "Chest",
+      "Handshape": "open_8",
+      "Index": 88,
+      "Display": 0,
+      "Similar": [
+        "Contact"
+      ]
+    },
+    {
+      "Sign": "Fork",
+      "Location": "Chest",
+      "Handshape": "v",
+      "Index": 4,
+      "Display": 0,
+      "Similar": [
+        "Dance",
+        "Toast",
+        "Read",
+        "Twice"
+      ]
+    },
+    {
+      "Sign": "Kid",
+      "Location": "Head",
+      "Handshape": "y",
+      "Index": 9,
+      "Display": 0,
+      "Similar": [
+        "Silly",
+        "Drunk"
+      ]
+    },
+    {
+      "Sign": "Struggle",
+      "Location": "Chest",
+      "Handshape": "1-1",
+      "Index": 19,
+      "Display": 0,
+      "Similar": [
+        "Happen",
+        "Answer",
+        "During",
+        "Parallel",
+        "Wheel"
+      ]
+    },
+    {
+      "Sign": "Dirty",
+      "Location": "Head",
+      "Handshape": "4-5",
+      "Index": 39,
+      "Display": 0,
+      "Similar": [
+        "Color",
+        "Farm",
+        "Fine"
+      ]
+    },
+    {
+      "Sign": "Mix-up",
+      "Location": "Chest",
+      "Handshape": "bent_5",
+      "Index": 0,
+      "Display": 0,
+      "Similar": [
+        "Messed-up"
+      ]
+    },
+    {
+      "Sign": "Giraffe",
+      "Location": "Head",
+      "Handshape": "c",
+      "Index": 89,
+      "Display": 0,
+      "Similar": [
+        "Choke",
+        "Orange"
+      ]
+    },
+    {
+      "Sign": "Free",
+      "Location": "Chest",
+      "Handshape": "f",
+      "Index": 5,
+      "Display": 0,
+      "Similar": [
+        "Important",
+        "Interpret",
+        "Sentence",
+        "Feedback"
+      ]
+    },
+    {
+      "Sign": "Tend",
+      "Location": "Chest",
+      "Handshape": "open_8",
+      "Index": 10,
+      "Display": 0,
+      "Similar": [
+        "Excited",
+        "Touch-Heart"
+      ]
+    },
+    {
+      "Sign": "Funeral",
+      "Location": "Chest",
+      "Handshape": "v",
+      "Index": 20,
+      "Display": 0,
+      "Similar": [
+        "Intercourse",
+        "Either",
+        "Very"
+      ]
+    },
+    {
+      "Sign": "Cow",
+      "Location": "Head",
+      "Handshape": "y",
+      "Index": 40,
+      "Display": 0,
+      "Similar": [
+        "Yellow",
+        "Why",
+        "Blond"
+      ]
+    },
+    {
+      "Sign": "Wheel",
+      "Location": "Chest",
+      "Handshape": "1-1",
+      "Index": 0,
+      "Display": 0,
+      "Similar": [
+        "Hurt",
+        "Wheelchair",
+        "Think+opposite",
+        "Struggle"
+      ]
+    },
+    {
+      "Sign": "Rainbow",
+      "Location": "Chest",
+      "Handshape": "4-5",
+      "Index": 90,
+      "Display": 0,
+      "Similar": [
+        "Scotland",
+        "Fine"
+      ]
+    },
+    {
+      "Sign": "Save-money",
+      "Location": "Chest",
+      "Handshape": "bent_5",
+      "Index": 3,
+      "Display": 1,
+      "Similar": [
+        "Learn",
+        "Include",
+        "Match"
+      ]
+    },
+    {
+      "Sign": "Character",
+      "Location": "Chest",
+      "Handshape": "c",
+      "Index": 8,
+      "Display": 1,
+      "Similar": [
+        "Cafeteria",
+        "Christmas",
+        "Cop",
+        "Chicago"
+      ]
+    },
+    {
+      "Sign": "Sentence",
+      "Location": "Chest",
+      "Handshape": "f",
+      "Index": 18,
+      "Display": 1,
+      "Similar": [
+        "Free",
+        "Important",
+        "Interpret",
+        "Feedback",
+        ""
+      ]
+    },
+    {
+      "Sign": "Jesus",
+      "Location": "Chest",
+      "Handshape": "open_8",
+      "Index": 38,
+      "Display": 1,
+      "Similar": [
+        "Hate",
+        "Awful"
+      ]
+    },
+    {
+      "Sign": "Salt",
+      "Location": "Chest",
+      "Handshape": "v",
+      "Index": 0,
+      "Display": 1,
+      "Similar": [
+        "Ride",
+        "Twice",
+        "Sit",
+        "Train"
+      ]
+    },
+    {
+      "Sign": "Yawn",
+      "Location": "Chest",
+      "Handshape": "y",
+      "Index": 88,
+      "Display": 1,
+      "Similar": [
+        "Stay"
+      ]
+    },
+    {
+      "Sign": "Famous",
+      "Location": "Head",
+      "Handshape": "1-1",
+      "Index": 4,
+      "Display": 1,
+      "Similar": [
+        "Announce",
+        "Finally",
+        "Headache",
+        "Think+opposite",
+        ""
+      ]
+    },
+    {
+      "Sign": "Fancy",
+      "Location": "Chest",
+      "Handshape": "4-5",
+      "Index": 9,
+      "Display": 1,
+      "Similar": [
+        "Grandmother",
+        "Ignore",
+        "Polite",
+        "Fine",
+        "Formerly",
+        "Farm"
+      ]
+    },
+    {
+      "Sign": "Puff",
+      "Location": "Head",
+      "Handshape": "bent_5",
+      "Index": 19,
+      "Display": 1,
+      "Similar": [
+        "Storm",
+        "Radio"
+      ]
+    },
+    {
+      "Sign": "Pig",
+      "Location": "Head",
+      "Handshape": "c",
+      "Index": 39,
+      "Display": 1,
+      "Similar": [
+        "Drink"
+      ]
+    },
+    {
+      "Sign": "Dye",
+      "Location": "Chest",
+      "Handshape": "f",
+      "Index": 0,
+      "Display": 1,
+      "Similar": [
+        "Vote",
+        "Feedback"
+      ]
+    },
+    {
+      "Sign": "Australia",
+      "Location": "Chest",
+      "Handshape": "open_8",
+      "Index": 89,
+      "Display": 1,
+      "Similar": [
+        "Hate",
+        "Awful"
+      ]
+    },
+    {
+      "Sign": "Bridge",
+      "Location": "Chest",
+      "Handshape": "v",
+      "Index": 5,
+      "Display": 1,
+      "Similar": [
+        "Predict"
+      ]
+    },
+    {
+      "Sign": "Subway",
+      "Location": "Chest",
+      "Handshape": "y",
+      "Index": 10,
+      "Display": 1,
+      "Similar": [
+        "Country",
+        "Whale"
+      ]
     },
     {
       "Sign": "Roommate",
-      "Set": "Chest",
-      "Index": 0,
-      "Display": 0
-    },
-    {
-      "Sign": "Addicted",
-      "Set": "Head",
-      "Index": 5,
-      "Display": 0
-    },
-    {
-      "Sign": "Ruin",
-      "Set": "Chest",
-      "Index": 0,
-      "Display": 0
-    },
-    {
-      "Sign": "Pancake",
-      "Set": "Chest",
-      "Index": 17,
-      "Display": 0
-    },
-    {
-      "Sign": "Ugly",
-      "Set": "Head",
-      "Index": -1,
-      "Display": 0
-    },
-    {
-      "Sign": "Mosquito",
-      "Set": "Head",
-      "Index": 22,
-      "Display": 0
-    },
-    {
-      "Sign": "Balloon",
-      "Set": "Head",
-      "Index": -1,
-      "Display": 0
-    },
-    {
-      "Sign": "Spread",
-      "Set": "Chest",
-      "Index": 0,
-      "Display": 0
-    },
-    {
-      "Sign": "Octopus",
-      "Set": "Chest",
-      "Index": 21,
-      "Display": 0
-    },
-    {
-      "Sign": "Trouble",
-      "Set": "Head",
-      "Index": 8,
-      "Display": 0
-    },
-    {
-      "Sign": "Match",
-      "Set": "Chest",
-      "Index": -1,
-      "Display": 0
-    },
-    {
-      "Sign": "Tan",
-      "Set": "Head",
-      "Index": 16,
-      "Display": 0
-    },
-    {
-      "Sign": "Owl",
-      "Set": "Head",
-      "Index": 7,
-      "Display": 0
-    }
-  ],
-  "modality": [
-    {
-      "Sign": "Potato",
-      "Set": "Chest",
-      "Index": 4,
-      "Display": 1
-    },
-    {
-      "Sign": "Stuck",
-      "Set": "Head",
-      "Index": 8,
+      "Location": "Chest",
+      "Handshape": "bent_5",
+      "Index": 20,
       "Display": 1,
-      "": {}
-    },
-    {
-      "Sign": "Bee",
-      "Set": "Head",
-      "Index": 4,
-      "Display": 1
+      "Similar": [
+        "Match"
+      ]
     },
     {
       "Sign": "Friendly",
-      "Set": "Head",
-      "Index": 6,
-      "Display": 0
+      "Location": "Head",
+      "Handshape": "4-5",
+      "Index": 40,
+      "Display": 1,
+      "Similar": [
+        "Trouble"
+      ]
     },
     {
-      "Sign": "Farm",
-      "Set": "Head",
-      "Index": 9,
-      "Display": 0
+      "Sign": "Potato",
+      "Location": "Chest",
+      "Handshape": "v",
+      "Index": 0,
+      "Display": 1,
+      "Similar": [
+        "Watch"
+      ]
     },
     {
-      "Sign": "Cereal",
-      "Set": "Head",
-      "Index": 2,
-      "Display": 0
-    },
-    {
-      "Sign": "Introduce",
-      "Set": "Chest",
-      "Index": 1,
-      "Display": 2
-    },
-    {
-      "Sign": "Hard",
-      "Set": "Chest",
-      "Index": 3,
-      "Display": 2,
-      "": {}
-    },
-    {
-      "Sign": "Wide",
-      "Set": "Chest",
-      "Index": 4,
-      "Display": 2
+      "Sign": "Road",
+      "Location": "Chest",
+      "Handshape": "bent_5",
+      "Index": 90,
+      "Display": 1,
+      "Similar": [
+        "Focus"
+      ]
     }
   ]
 }
