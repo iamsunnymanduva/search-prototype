@@ -126,7 +126,8 @@ function addImage(name, staticImage) {
   } else if ($('.results-grid').hasClass('gif')) {
     var format = '.gif';
   }
-    $(`#${id}`).css('background-image', 'url(../images/' + id + format);
+
+  $(`#${id}`).css('background-image', 'url(../images/' + id + format);
 }
 
 function bindResults(staticImage) {
@@ -302,5 +303,4 @@ function __main__() {
   } else if (path == "index.html" || path == "") {
     bindParticipantCode();
   }
-
 }

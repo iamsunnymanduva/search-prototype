@@ -1,5 +1,5 @@
 {
-  "product": "Sign lists + Flow",
+  "product": "Sign lists _ Flow",
   "version": 2,
   "releaseDate": "2019-02-20T00:00:00.000Z",
   "model": "http://www.objgen.com/json/models/LqPZn",
@@ -29,7 +29,7 @@
       "Smile",
       "Square",
       "Struggle",
-      "Think+opposite",
+      "Think opposite",
       "Wheel",
       "Wheelchair"
     ],
@@ -68,7 +68,7 @@
       "Messed-up",
       "Mix-up",
       "Pea-brain",
-      "People+audience",
+      "People audience",
       "Poor",
       "Puff-smoke",
       "Radio",
@@ -296,7 +296,7 @@
       "Priest",
       "Tie",
       "Collect",
-      "Puerto rico",
+      "Puerto Rico",
       "Tiny",
       "Cook",
       "Really",
@@ -494,7 +494,7 @@
       "Display": 0,
       "Similar": [
         "Excited",
-        "Touch-Heart"
+        "Touch-heart"
       ]
     },
     {
@@ -530,7 +530,7 @@
       "Similar": [
         "Hurt",
         "Wheelchair",
-        "Think+opposite",
+        "Think opposite",
         "Struggle"
       ]
     },
@@ -566,7 +566,7 @@
       "Similar": [
         "Cafeteria",
         "Christmas",
-        "Cop",
+        "Episcopal",
         "Chicago"
       ]
     },
@@ -580,8 +580,7 @@
         "Free",
         "Important",
         "Interpret",
-        "Feedback",
-        ""
+        "Feedback"
       ]
     },
     {
@@ -628,8 +627,7 @@
         "Announce",
         "Finally",
         "Headache",
-        "Think+opposite",
-        ""
+        "Think opposite"
       ]
     },
     {
