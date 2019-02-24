@@ -69,25 +69,38 @@ function getQuery(i,p) {
 }
 
 function loadGrid() {
-  getInterviewOrder(function(interview) {
-    let curr = interview[getParameter("i")];
-    loadJSON("flow.json", function(json) {
-      if (curr) {
-        var location = curr["Location"];
-        var handshape = curr["Handshape"];
-        var sign = curr["Sign"];
-        var index = curr["Index"];
-        var similar = curr["Similar"];
-        var similar_h = json.Signs[handshape];
-        var similar_l = json.Signs[location];
-        signs = generateResults(sign, similar, similar_h, similar_l, index);
-        // Quick fix for counterbalancing
-        setDisplay(interview.length);
+  loadJSON("flow.json", function(flow) {
+    let i = getParameter("i");
+    let p = getParameter("p");
+
+    if (i >= 0) {
+      var signs_order = flow.Flow;
+      var ks = LatinSquare(flow.Ks,p);
+      var index = ks[i%ks.length];
+      var curr = signs_order[i];
+      var total_signs_flow = signs_order.length;
+    } else {
+      var curr = flow.Sample;
+      var index = curr["Index"];
+      var total_signs_flow = 1;
+    }
+    let all_signs = flow.Signs;
+    let display_modes = flow.Display_modes;
+
+    if (curr) {
+      var location = curr["Location"];
+      var handshape = curr["Handshape"];
+      var sign = curr["Sign"];
+      var similar = curr["Similar"];
+      var similar_h = all_signs[handshape];
+      var similar_l = all_signs[location];
+      signs = generateResults(sign, similar, similar_h, similar_l, index);
+      setDisplay(total_signs_flow, LatinSquare(display_modes,p), p, i);
       } else {
-        var signs = shuffle(json.Signs["Head"]);
+        var signs = shuffle(all_signs["Head"]);
       }
 
-      let filler = shuffle(json.Signs["Random"]);
+      let filler = shuffle(all_signs["Random"]);
       const MAX = 100;
       let grid = signs.concat(filler.splice(0,MAX - signs.length -1));
       grid.splice(index,0,sign);
@@ -97,40 +110,36 @@ function loadGrid() {
         addImage(name, staticImage);
       });
       bindResults(staticImage);
-      $('.number-of-signs').text(grid.length);
+      $('.number-of-signs').text($('.results-grid').length);
     });
-  });
 }
 
-function setDisplay(length) {
-  // Quick fix for counterbalancing
-  let p = getParameter("p");
-  let i = getParameter("i");
-  let mode = p%2;
-  if (i < length/2) {
-    mode += 1;
-  }
+function setDisplay(total, modes, p, i) {
+  // 0 is thumbnails
+  // 1 is gifs
+  let n_modes = modes.length;
+  let mode_index = Math.floor(i/(total/modes.length));
+  let mode = modes[mode_index];
   if (mode == 1) {
     $('.results-grid').addClass('gif');
   }
-  // else if (mode == 2) {
-  //   $('.results-grid').addClass('word');
-  // }
 }
 
 function addImage(name, staticImage) {
   let id = name.split(' ').join('_');
   $('.results-grid').append(`<div class="result-box"> <div class="result-image" id="${id}"></div><div class="result-title"><p> ${name} </p></div></div>`);
+  let curr = $(`#${id}`);
   if (staticImage) {
     var format = '.png';
   } else if ($('.results-grid').hasClass('gif')) {
+    curr.addClass('gif');
     var format = '.gif';
   }
 
-  $(`#${id}`).css('background-image', 'url(../images/' + id + format);
+  curr.css('background-image', 'url(../images/' + id + format);
 }
 
-function bindResults(staticImage) {
+function bindResults() {
   $('.results-grid.word .result-box').hover(function() {
     //$('.result-title').removeClass('hide-word');
     $(this).find('.result-title').toggleClass('hide-word');
@@ -142,7 +151,7 @@ function bindResults(staticImage) {
     if ($(this).hasClass('active')) {
       $(this).css('background-image', 'url(../images/' + name + '.gif)');
     } else {
-      if (staticImage) {
+      if (!$(this).hasClass('gif')) {
         $(this).css('background-image', 'url(../images/' + name + '.png)');
       } else if ($('.results-grid').hasClass('word')) {
         $(this).css('background-image', 'none');
@@ -211,10 +220,16 @@ function getParameter(p) {
 }
 
 function getVideo() {
-  getInterviewOrder(function(interview) {
-    let curr = interview[getParameter("i")];
+  loadJSON("flow.json", function(flow) {
+    let i = getParameter("i");
+    if (i >= 0) {
+      let sign_order = flow.Flow;
+      var curr = sign_order[i];
+    } else {
+      var curr = flow.Sample;
+    }
     if (curr) {
-      let videoFile = interview[getParameter("i")].Sign + ".mp4";
+      let videoFile = curr.Sign + ".mp4";
       let $video = $('.video video');
       $video.attr('src', '../videos/' + videoFile);
       $video[0].load();
@@ -222,17 +237,11 @@ function getVideo() {
   });
 }
 
-function getInterviewOrder(callback) {
-  loadJSON("flow.json", function(flow) {
-    let interview = flow.Flow;
-    let p = getParameter("p");
-
-    interview = LatinSquare(interview, p, 1);
-    callback(interview);
-  });
-}
 
 function LatinSquare(arr, p, n) {
+  if (!n) {
+    n = 1;
+  }
   let size = arr.length;
   let move = ((p-1)%(size/n))*n;
   if (move > 0) {
@@ -242,19 +251,21 @@ function LatinSquare(arr, p, n) {
   return arr;
 }
 
-function bindParticipantCode() {
-  $('.next').click(getParticipantCode);
+function bindParticipantCode(startingPoint) {
+  $('.next').click(function() {
+    getParticipantCode(startingPoint);
+  });
   $('.code input').keypress(function(e){
         if(e.which == 13){//Enter key pressed
-            getParticipantCode();
+            getParticipantCode(startingPoint);
         }
     });
 }
 
-function getParticipantCode() {
+function getParticipantCode(startingPoint) {
   let p = Number($('.code input').val());
   if (p) {
-    window.open("pages/video.html?" + getQuery(0,p),"_self");
+    window.open("pages/sample.html?" + getQuery(startingPoint,p),"_self");
   } else {
     window.alert("Please enter a valid code");
   }
@@ -285,22 +296,27 @@ function backToTop() {
 
 function __main__() {
   let path = getEndOfPath(window.location.pathname);
-  getInterviewOrder(function(interview) {
-    if (interview.length <= getParameter("i")) {
+  let i = getParameter("i");
+  loadJSON("flow.json", function(flow) {
+    let sign_order = flow.Flow;
+    if (sign_order.length <= i) {
       $('.content').html('<h1>Thank you</h1>');
     }
   })
   if (path == "results.html") {
-    setIndexQuery(getParameter("i") + 1, '.home a');
+    setIndexQuery(i + 1, '.home a');
     loadGrid();
     backToTop();
   } else if (path == "record.html") {
     getCamera();
     bindRecord();
   } else if (path == "video.html") {
-    setIndexQuery(getParameter("i"), '.next');
+    setIndexQuery(i, '.next');
     getVideo();
   } else if (path == "index.html" || path == "") {
-    bindParticipantCode();
+    bindParticipantCode(-1);
+  } else if (path == "sample.html") {
+    setIndexQuery(i, '.next')
+    bindResults();
   }
 }

@@ -66,10 +66,6 @@ a {
   }
 }
 
-.code {
-
-}
-
 .video-wrapper {
   width: 40%;
 
@@ -295,6 +291,10 @@ a {
   height: auto;
   flex-wrap: wrap;
   align-content: space-around;
+
+  &.center {
+    justify-content: center;
+  }
 
   &:not(.word) {
     .result-title p {

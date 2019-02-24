@@ -276,6 +276,10 @@ a {
   align-content: space-around;
 }
 
+.results-grid.center {
+  justify-content: center;
+}
+
 .results-grid:not(.word) .result-title p {
   width: 100%;
   padding: 5% 0 7.5% 0;
