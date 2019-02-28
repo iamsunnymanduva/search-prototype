@@ -110,7 +110,7 @@ function loadGrid() {
         addImage(name, staticImage);
       });
       bindResults(staticImage);
-      $('.number-of-signs').text($('.results-grid').length);
+      $('.number-of-signs').text(grid.length);
     });
 }
 
