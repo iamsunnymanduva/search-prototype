@@ -219,8 +219,9 @@ function getParameter(p) {
 function getVideo() {
   loadJSON("flow.json", function(flow) {
     let i = getParameter("i");
+    let p = getParameter("p");
     if (i >= 0) {
-      let sign_order = flow.Flow;
+      let sign_order = LatinSquare(flow.Flow,p);
       var curr = sign_order[i];
     } else {
       var curr = flow.Sample;
