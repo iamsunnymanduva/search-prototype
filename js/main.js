@@ -74,8 +74,10 @@ function loadGrid() {
     let p = getParameter("p");
 
     if (i >= 0) {
-      var signs_order = flow.Flow;
-      var ks = LatinSquare(flow.Ks,p);
+      var signs_order = LatinSquare(flow.Flow,p);
+      // TODO: Make 4 a constant (precision levels + counterbalance)
+      var ks = LatinSquare(flow.Ks, p, 4);
+      console.log(ks);
       var index = ks[i%ks.length];
       var curr = signs_order[i];
       var total_signs_flow = signs_order.length;
@@ -96,22 +98,22 @@ function loadGrid() {
       var similar_l = all_signs[location];
       signs = generateResults(sign, similar, similar_h, similar_l, index);
       setDisplay(total_signs_flow, LatinSquare(display_modes,p), p, i);
-      } else {
-        var signs = shuffle(all_signs["Head"]);
-      }
+    } else {
+      var signs = shuffle(all_signs["Head"]);
+    }
 
-      let filler = shuffle(all_signs["Random"]);
-      const MAX = 100;
-      let grid = signs.concat(filler.splice(0,MAX - signs.length -1));
-      grid.splice(index,0,sign);
+    let filler = shuffle(all_signs["Random"]);
+    const MAX = 100;
+    let grid = signs.concat(filler.splice(0,MAX - signs.length -1));
+    grid.splice(index,0,sign);
 
-      let staticImage = !($('.results-grid').hasClass('word') || $('.results-grid').hasClass('gif'));
-      grid.forEach(function(name) {
-        addImage(name, staticImage);
-      });
-      bindResults(staticImage);
-      $('.number-of-signs').text(grid.length);
+    let staticImage = !($('.results-grid').hasClass('word') || $('.results-grid').hasClass('gif'));
+    grid.forEach(function(name) {
+      addImage(name, staticImage);
     });
+    bindResults(staticImage);
+    $('.number-of-signs').text(grid.length);
+  });
 }
 
 function setDisplay(total, modes, p, i) {
@@ -188,19 +190,14 @@ function generateResults(el, similar, handshape, location, index) {
 
   let before = [];
   let after = [];
-  let similar_fill = similar.length - index;
-  let handshape_fill = handshape.length - Math.abs(similar_fill);
-  if (similar_fill > 0) {
-    before = similar.splice(0, index);
-    after = similar.concat(handshape).concat(location);
-  } else if (handshape_fill > 0) {
-    let fill = Math.abs(similar_fill);
-    before = similar.concat(handshape.splice(0,fill));
+  let similar_n = similar.length;
+  if (similar_n > 0) {
+    // TODO: Make the 0.4 a constant somehow
+    before = similar.concat(handshape.splice(0, Math.min(similar_n/0.4 - similar_n, index-similar_n)));
+    before = before.concat(location.splice(0, index - before.length ));
     after = handshape.concat(location);
   } else {
-    // Assuming similar + handshape + location > index
-    let fill = Math.abs(handshape_fill);
-    before = similar.concat(handshape).concat(location.splice(0,fill));
+    before = location.splice(0, index);
     after = location;
   }
 
@@ -299,6 +296,21 @@ function __main__() {
   let i = getParameter("i");
   loadJSON("flow.json", function(flow) {
     let sign_order = flow.Flow;
+    // Checking for numbers of similar / handshapes, delete later
+    var count = 0;
+    var index = 0;
+    console.log("Head: ", flow.Signs.Head.length)
+    console.log("Chest: ", flow.Signs.Chest.length)
+    sign_order.forEach(function(sign) {
+      var similar = sign.Similar.length;
+      console.log(index,sign.Sign, flow.Signs[sign.Handshape].length, similar);
+      if (similar == 0) {
+        count++;
+      }
+      index++;
+    });
+    console.log(count);
+    // End of block to be deleted
     if (sign_order.length <= i) {
       $('.content').html('<h1>Thank you</h1>');
     }

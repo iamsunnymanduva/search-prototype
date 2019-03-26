@@ -4,22 +4,21 @@
   "releaseDate": "2019-02-24T00:00:00.000Z",
   "model": "http://www.objgen.com/json/models/LqPZn",
   "Ks": [
+    "7",
+    "9",
+    "11",
     "8",
-    "3",
-    "0",
-    "18",
-    "9",
-    "4",
-    "0",
-    "19",
     "10",
-    "5",
-    "0",
-    "20",
+    "10",
     "9",
-    "4",
-    "0",
-    "19"
+    "11",
+    "9",
+    "10",
+    "8",
+    "8",
+    "11",
+    "7",
+    "7"
   ],
   "Display_modes": [
     "0",
@@ -30,24 +29,16 @@
       "Alcohol",
       "Announce",
       "Answer",
-      "Become",
-      "Business",
       "But",
       "Cigarette",
-      "Conflict",
       "During",
       "Famous",
       "Finally",
       "Happen",
       "Headache",
       "Hurt",
-      "Laugh",
-      "Nervous",
       "Parallel",
-      "Pay-attention",
       "Sarcasm",
-      "Smile",
-      "Square",
       "Struggle",
       "Think opposite",
       "Wheel",
@@ -57,7 +48,6 @@
       "Abandon",
       "Africa",
       "Color",
-      "Crazy",
       "Dirty",
       "Fancy",
       "Farm",
@@ -69,33 +59,25 @@
       "Ignore",
       "Jewish",
       "Polite",
-      "Pregnant",
       "Rainbow",
       "Scotland",
-      "Talk-to-self",
       "Wolf"
     ],
     "bent_5": [
       "Ball",
       "Curly",
-      "Disappear",
       "Freeze",
       "Globe",
-      "Hurricane",
       "Include",
       "Learn",
-      "Light-match",
       "Messed-up",
       "Mix-up",
-      "Pea-brain",
       "People audience",
-      "Poor",
       "Puff-smoke",
       "Radio",
       "Roommate",
       "Save-money",
       "Storm",
-      "To-fool",
       "Want"
     ],
     "c": [
@@ -106,20 +88,17 @@
       "Christmas",
       "Cousin",
       "Drink",
-      "Episcopal",
       "Force",
       "Giraffe",
       "Look",
       "Member",
       "Milk",
-      "Misunderstand",
       "Old",
       "Orange",
       "Pig"
     ],
     "f": [
       "Cat",
-      "Checking-account",
       "Coins",
       "Cooperate",
       "Dye",
@@ -128,7 +107,6 @@
       "Free",
       "Important",
       "Interpret",
-      "None",
       "Olympics",
       "Replace",
       "Sentence",
@@ -154,15 +132,11 @@
       "Touch-heart"
     ],
     "v": [
-      "Bread",
-      "Bridge",
       "Dance",
       "Either",
-      "Everyday",
       "Fork",
       "Funeral",
       "Intercourse",
-      "Lose-weight",
       "Misunderstand",
       "Predict",
       "Raccoon",
@@ -178,22 +152,20 @@
     ],
     "y": [
       "Blond",
-      "Country",
       "Cow",
       "Drunk",
-      "From-now-on",
       "Impossible",
       "Kid",
       "Play",
       "Silly",
       "Stay",
       "Subway",
-      "Swear",
-      "Uniform",
+      "Talk-to-self",
       "Whale",
       "Why",
-      "Yellow",
-      "Yesterday"
+      "Wrong",
+      "Yawn",
+      "Yellow"
     ],
     "Head": [
       "Know",
@@ -207,14 +179,12 @@
       "Experience",
       "Glasses",
       "Hair",
-      "Drink",
       "Water",
       "Mustache",
       "Addicted",
       "Bee",
       "Owl",
       "Mosquito",
-      "Rat",
       "Girl",
       "Boy",
       "Balloon",
@@ -224,7 +194,6 @@
       "Ugly",
       "Strict",
       "Tan",
-      "Yawn",
       "Trouble",
       "Who",
       "Good",
@@ -238,7 +207,6 @@
       "Shoes",
       "Socks",
       "Write",
-      "Study",
       "Marry",
       "Football",
       "Fight",
@@ -253,8 +221,6 @@
       "More",
       "Kiss",
       "Wide",
-      "Focus",
-      "General",
       "Match",
       "Octopus",
       "Spread",
@@ -347,7 +313,7 @@
     "Sign": "Road",
     "Handshape": "bent_5",
     "Location": "Chest",
-    "Index": "5",
+    "Index": "10",
     "Similar": [
       "Focus",
       "General"
@@ -361,9 +327,7 @@
       "Similar": [
         "Alcohol",
         "Conflict",
-        "Happen",
-        "Answer",
-        "During",
+        "Sarcasm",
         "Parallel"
       ]
     },
@@ -373,18 +337,15 @@
       "Location": "Chest",
       "Similar": [
         "Rainbow",
-        "Fine",
-        "Fingerspell"
+        "Fine"
       ]
     },
     {
-      "Sign": "Curly",
-      "Handshape": "bent_5",
-      "Location": "Head",
+      "Sign": "Internet",
+      "Handshape": "open_8",
+      "Location": "Chest",
       "Similar": [
-        "Ball",
-        "Globe",
-        "Storm"
+
       ]
     },
     {
@@ -394,27 +355,25 @@
       "Similar": [
         "Christmas",
         "Cafeteria",
-        "Character",
         "Cousin",
         "Drink"
       ]
     },
     {
-      "Sign": "Olympics",
-      "Handshape": "f",
-      "Location": "Chest",
+      "Sign": "Curly",
+      "Handshape": "bent_5",
+      "Location": "Head",
       "Similar": [
-        "Cooperate",
-        "Simple",
-        "Sew"
+        "Globe",
+        "Storm"
       ]
     },
     {
-      "Sign": "Internet",
-      "Handshape": "open_8",
-      "Location": "Chest",
+      "Sign": "Silly",
+      "Handshape": "y",
+      "Location": "Head",
       "Similar": [
-        "Contact"
+
       ]
     },
     {
@@ -429,12 +388,20 @@
       ]
     },
     {
-      "Sign": "Silly",
-      "Handshape": "y",
-      "Location": "Head",
+      "Sign": "Olympics",
+      "Handshape": "f",
+      "Location": "Chest",
       "Similar": [
-        "Kid",
-        "Drunk"
+        "Cooperate",
+        "Sew"
+      ]
+    },
+    {
+      "Sign": "Mix-up",
+      "Handshape": "bent_5",
+      "Location": "Chest",
+      "Similar": [
+
       ]
     },
     {
@@ -443,10 +410,9 @@
       "Location": "Chest",
       "Similar": [
         "Happen",
-        "Answer",
         "During",
-        "Parallel",
-        "Wheel"
+        "Wheel",
+        "Wheelchair"
       ]
     },
     {
@@ -454,17 +420,8 @@
       "Handshape": "4-5",
       "Location": "Head",
       "Similar": [
-        "Color",
-        "Farm",
+        "Pig",
         "Fine"
-      ]
-    },
-    {
-      "Sign": "Mix-up",
-      "Handshape": "bent_5",
-      "Location": "Chest",
-      "Similar": [
-        "Messed-up"
       ]
     },
     {
@@ -472,8 +429,7 @@
       "Handshape": "c",
       "Location": "Head",
       "Similar": [
-        "Choke",
-        "Orange"
+
       ]
     },
     {
@@ -488,32 +444,20 @@
       ]
     },
     {
-      "Sign": "Tend",
-      "Handshape": "open_8",
-      "Location": "Chest",
-      "Similar": [
-        "Excited",
-        "Touch-heart"
-      ]
-    },
-    {
       "Sign": "Funeral",
       "Handshape": "v",
       "Location": "Chest",
       "Similar": [
         "Intercourse",
-        "Either",
-        "Very"
+        "Either"
       ]
     },
     {
-      "Sign": "Cow",
-      "Handshape": "y",
-      "Location": "Head",
+      "Sign": "Tend",
+      "Handshape": "open_8",
+      "Location": "Chest",
       "Similar": [
-        "Yellow",
-        "Why",
-        "Blond"
+
       ]
     },
     {
@@ -528,44 +472,12 @@
       ]
     },
     {
-      "Sign": "Rainbow",
-      "Handshape": "4-5",
-      "Location": "Chest",
+      "Sign": "Cow",
+      "Handshape": "y",
+      "Location": "Head",
       "Similar": [
-        "Scotland",
-        "Fine",
-        "Fingerspell"
-      ]
-    },
-    {
-      "Sign": "Save-money",
-      "Handshape": "bent_5",
-      "Location": "Chest",
-      "Similar": [
-        "Learn",
-        "Include",
-        "Match"
-      ]
-    },
-    {
-      "Sign": "Character",
-      "Handshape": "c",
-      "Location": "Chest",
-      "Similar": [
-        "Cafeteria",
-        "Christmas",
-        "Chicago"
-      ]
-    },
-    {
-      "Sign": "Sentence",
-      "Handshape": "f",
-      "Location": "Chest",
-      "Similar": [
-        "Free",
-        "Important",
-        "Interpret",
-        "Feedback"
+        "Yellow",
+        "Blond"
       ]
     },
     {
@@ -573,27 +485,7 @@
       "Handshape": "open_8",
       "Location": "Chest",
       "Similar": [
-        "Hate",
-        "Awful"
-      ]
-    },
-    {
-      "Sign": "Salt",
-      "Handshape": "v",
-      "Location": "Chest",
-      "Similar": [
-        "Ride",
-        "Twice",
-        "Sit",
-        "Train"
-      ]
-    },
-    {
-      "Sign": "Yawn",
-      "Handshape": "y",
-      "Location": "Chest",
-      "Similar": [
-        "Stay"
+
       ]
     },
     {
@@ -608,16 +500,40 @@
       ]
     },
     {
-      "Sign": "Fancy",
+      "Sign": "Rainbow",
       "Handshape": "4-5",
       "Location": "Chest",
       "Similar": [
-        "Grandmother",
-        "Ignore",
-        "Polite",
-        "Fine",
-        "Formerly",
-        "Farm"
+        "Scotland",
+        "Fine"
+      ]
+    },
+    {
+      "Sign": "Yawn",
+      "Handshape": "y",
+      "Location": "Chest",
+      "Similar": [
+
+      ]
+    },
+    {
+      "Sign": "Sentence",
+      "Handshape": "f",
+      "Location": "Chest",
+      "Similar": [
+        "Free",
+        "Important",
+        "Interpret",
+        "Feedback"
+      ]
+    },
+    {
+      "Sign": "Save-money",
+      "Handshape": "bent_5",
+      "Location": "Chest",
+      "Similar": [
+        "Learn",
+        "Include"
       ]
     },
     {
@@ -625,8 +541,27 @@
       "Handshape": "bent_5",
       "Location": "Head",
       "Similar": [
-        "Storm",
-        "Radio"
+
+      ]
+    },
+    {
+      "Sign": "Salt",
+      "Handshape": "v",
+      "Location": "Chest",
+      "Similar": [
+        "Ride",
+        "Twice",
+        "Sit",
+        "Train"
+      ]
+    },
+    {
+      "Sign": "Character",
+      "Handshape": "c",
+      "Location": "Chest",
+      "Similar": [
+        "Cafeteria",
+        "Christmas"
       ]
     },
     {
@@ -634,16 +569,18 @@
       "Handshape": "c",
       "Location": "Head",
       "Similar": [
-        "Drink"
+
       ]
     },
     {
-      "Sign": "Dye",
-      "Handshape": "f",
+      "Sign": "Fancy",
+      "Handshape": "4-5",
       "Location": "Chest",
       "Similar": [
-        "Vote",
-        "Feedback"
+        "Grandmother",
+        "Fine",
+        "Polite",
+        "Farm"
       ]
     },
     {
@@ -656,20 +593,11 @@
       ]
     },
     {
-      "Sign": "Bridge",
-      "Handshape": "v",
+      "Sign": "Dye",
+      "Handshape": "f",
       "Location": "Chest",
       "Similar": [
-        "Predict"
-      ]
-    },
-    {
-      "Sign": "Subway",
-      "Handshape": "y",
-      "Location": "Chest",
-      "Similar": [
-        "Country",
-        "Whale"
+
       ]
     }
   ]
