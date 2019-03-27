@@ -342,8 +342,8 @@
     },
     {
       "Sign": "Internet",
-      "Handshape": "open_8",
-      "Location": "Chest",
+      "Handshape": "f",
+      "Location": "Head",
       "Similar": [
 
       ]
@@ -370,8 +370,8 @@
     },
     {
       "Sign": "Silly",
-      "Handshape": "y",
-      "Location": "Head",
+      "Handshape": "open_8",
+      "Location": "Chest",
       "Similar": [
 
       ]
@@ -398,8 +398,8 @@
     },
     {
       "Sign": "Mix-up",
-      "Handshape": "bent_5",
-      "Location": "Chest",
+      "Handshape": "y",
+      "Location": "Head",
       "Similar": [
 
       ]
@@ -426,8 +426,8 @@
     },
     {
       "Sign": "Giraffe",
-      "Handshape": "c",
-      "Location": "Head",
+      "Handshape": "v",
+      "Location": "Chest",
       "Similar": [
 
       ]
@@ -454,8 +454,8 @@
     },
     {
       "Sign": "Tend",
-      "Handshape": "open_8",
-      "Location": "Chest",
+      "Handshape": "c",
+      "Location": "Head",
       "Similar": [
 
       ]
@@ -482,8 +482,8 @@
     },
     {
       "Sign": "Jesus",
-      "Handshape": "open_8",
-      "Location": "Chest",
+      "Handshape": "y",
+      "Location": "Head",
       "Similar": [
 
       ]
@@ -510,8 +510,8 @@
     },
     {
       "Sign": "Yawn",
-      "Handshape": "y",
-      "Location": "Chest",
+      "Handshape": "open_8",
+      "Location": "Head",
       "Similar": [
 
       ]
@@ -538,8 +538,8 @@
     },
     {
       "Sign": "Puff-smoke",
-      "Handshape": "bent_5",
-      "Location": "Head",
+      "Handshape": "y",
+      "Location": "Chest",
       "Similar": [
 
       ]
@@ -566,8 +566,8 @@
     },
     {
       "Sign": "Pig",
-      "Handshape": "c",
-      "Location": "Head",
+      "Handshape": "bent_5",
+      "Location": "Chest",
       "Similar": [
 
       ]
@@ -594,8 +594,8 @@
     },
     {
       "Sign": "Dye",
-      "Handshape": "f",
-      "Location": "Chest",
+      "Handshape": "v",
+      "Location": "Head",
       "Similar": [
 
       ]

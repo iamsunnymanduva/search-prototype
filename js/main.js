@@ -95,13 +95,19 @@ function loadGrid() {
       var sign = curr["Sign"];
       var similar = curr["Similar"];
       var similar_h = all_signs[handshape];
-      var similar_l = all_signs[location];
+      var similar_l = [];
+      if (similar.length == 2) {
+        similar_l = all_signs["Head"].concat(all_signs["Chest"]).concat(all_signs["Random"]);
+      } else {
+        similar_l = all_signs[location];
+      }
       signs = generateResults(sign, similar, similar_h, similar_l, index);
       setDisplay(total_signs_flow, LatinSquare(display_modes,p), p, i);
     } else {
       var signs = shuffle(all_signs["Head"]);
     }
 
+    // Move this to generateResults. Why is it here?
     let filler = shuffle(all_signs["Random"]);
     const MAX = 100;
     let grid = signs.concat(filler.splice(0,MAX - signs.length -1));
@@ -191,14 +197,17 @@ function generateResults(el, similar, handshape, location, index) {
   let before = [];
   let after = [];
   let similar_n = similar.length;
-  if (similar_n > 0) {
+  if (similar_n == 4) {
     // TODO: Make the 0.4 a constant somehow
     before = similar.concat(handshape.splice(0, Math.min(similar_n/0.4 - similar_n, index-similar_n)));
     before = before.concat(location.splice(0, index - before.length ));
-    after = handshape.concat(location);
+    after = shuffle(handshape.concat(location));
+  } else if (similar_n == 2){
+    // Constant for quick fix
+    before = location.splice(0,99);
   } else {
-    before = location.splice(0, index);
-    after = location;
+    before = handshape.splice(0,Math.floor(index/2)).concat(location.splice(0, Math.floor(index/2)));
+    after = shuffle(handshape.concat(location));
   }
 
   shuffle(before);
