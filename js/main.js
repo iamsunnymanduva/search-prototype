@@ -94,16 +94,14 @@ function loadGrid() {
       var similar = curr["Similar"];
       var similar_h = all_signs[handshape];
       var similar_l = all_signs[location];
-      signs = generateResults(sign, similar, similar_h, similar_l, index);
+      var random = all_signs["Random"];
+      grid = generateResults(sign, similar.slice(), similar_h.slice(), similar_l.slice(), random.slice(), index);
       setDisplay(total_signs_flow, LatinSquare(display_modes,p), p, i);
       } else {
         var signs = shuffle(all_signs["Head"]);
       }
 
-      let filler = shuffle(all_signs["Random"]);
-      const MAX = 100;
-      let grid = signs.concat(filler.splice(0,MAX - signs.length -1));
-      grid.splice(index,0,sign);
+      computeValues(sign, similar, similar_h, similar_l, random, index);
 
       let staticImage = !($('.results-grid').hasClass('word') || $('.results-grid').hasClass('gif'));
       grid.forEach(function(name) {
@@ -176,9 +174,9 @@ function shuffle(o) {
 	return o;
 }
 
-function generateResults(el, similar, handshape, location, index) {
-  deleteElement(el, handshape);
-  deleteElement(el, location);
+function generateResults(sign, similar, handshape, location, random, index) {
+  deleteElement(sign, handshape);
+  deleteElement(sign, location);
   for (let i=0;i<similar.length;i++) {
     deleteElement(similar[i], handshape);
   }
@@ -205,8 +203,14 @@ function generateResults(el, similar, handshape, location, index) {
   }
 
   shuffle(before);
+  let signs = before.concat(after);
 
-  return before.concat(after);
+  let filler = shuffle(random);
+  const MAX = 100;
+  let grid = signs.concat(filler.splice(0,MAX - signs.length -1));
+  grid.splice(index,0,sign);
+
+  return grid;
 }
 
 function deleteElement(el, arr) {
@@ -236,7 +240,6 @@ function getVideo() {
     }
   });
 }
-
 
 function LatinSquare(arr, p, n) {
   if (!n) {
@@ -293,6 +296,67 @@ function backToTop() {
     $('html, body').animate({scrollTop:0}, '300');
   });
 }
+
+function computeValues(sign, similar, similar_h, similar_l, random, index) {
+  index = parseInt(index);
+  let i = getParameter("i");
+  let p = getParameter("p");
+  let sum_dcg = 0;
+  let sum_ndcg = 0;
+  let num_iterations = 100;
+  for (let c = 0;c<num_iterations;c++) {
+    let grid = generateResults(sign, similar.slice(), similar_h.slice(), similar_l.slice(), random.slice(), index);
+    let relevances = getRelevances(grid, similar, sign, similar_h, similar_l);
+    let dcg = computeDCG(relevances);
+    sum_dcg += dcg;
+    let ideal_dcg = computeDCG(relevances.sort().reverse());
+    sum_ndcg += dcg/ideal_dcg;
+  }
+  let dcg = sum_dcg/num_iterations;
+  let ndcg = sum_ndcg/num_iterations;
+  let dcg_binary = 1.0/Math.log2(index+2.0);
+  console.log(index,dcg);
+  console.log(index,ndcg);
+  create({i: i, p: p, values: [sign, index+1, dcg_binary, dcg, ndcg]});
+}
+
+function computeDCG(relevances) {
+  let value = 0;
+  relevances.forEach(function(rel,i) {
+    value += (Math.pow(2,rel)-1)/Math.log2(i+2.0);
+  });
+  return value;
+}
+
+function getRelevances(grid, similar, sign, similar_h, similar_l) {
+  let relevances = [];
+  grid.forEach(function(curr, i) {
+    var rel = 0;
+    if (sign == curr) {
+      rel = 3.0;
+    } else if (similar.indexOf(curr) >= 0) {
+      rel = .5;
+    } else if (similar_h.indexOf(curr) >= 0) {
+      rel = .25;
+    } else if (similar_l.indexOf(curr) >= 0) {
+      rel = .25;
+    }
+    relevances.push(rel);
+  });
+  return relevances;
+}
+
+function create(data) {
+    let options = {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+    }
+    return fetch('http://localhost:3004/dcg', options)
+      .then((response) => response.json)
+  }
 
 function __main__() {
   let path = getEndOfPath(window.location.pathname);
