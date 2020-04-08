@@ -74,10 +74,8 @@ function loadGrid() {
     let p = getParameter("p");
 
     if (i >= 0) {
-      var signs_order = LatinSquare(flow.Flow,p);
-      // TODO: Make 4 a constant (precision levels + counterbalance)
-      var ks = LatinSquare(flow.Ks, p, 4);
-      console.log(ks);
+      var signs_order = flow.Flow;
+      var ks = LatinSquare(flow.Ks,p);
       var index = ks[i%ks.length];
       var curr = signs_order[i];
       var total_signs_flow = signs_order.length;
@@ -100,15 +98,10 @@ function loadGrid() {
       grid = generateResults(sign, similar.slice(), similar_h.slice(), similar_l.slice(), random.slice(), index);
       setDisplay(total_signs_flow, LatinSquare(display_modes,p), p, i);
       } else {
-        similar_l = all_signs[location];
+        var signs = shuffle(all_signs["Head"]);
       }
-      signs = generateResults(sign, similar, similar_h, similar_l, index);
-      setDisplay(total_signs_flow, LatinSquare(display_modes,p), p, i);
-    } else {
-      var signs = shuffle(all_signs["Head"]);
-    }
 
-      computeValues(sign, similar, similar_h, similar_l, random, index);
+      // computeValues(sign, similar, similar_h, similar_l, random, index);
 
       let staticImage = !($('.results-grid').hasClass('word') || $('.results-grid').hasClass('gif'));
       grid.forEach(function(name) {
@@ -117,9 +110,6 @@ function loadGrid() {
       bindResults(staticImage);
       $('.number-of-signs').text(grid.length);
     });
-    bindResults(staticImage);
-    $('.number-of-signs').text(grid.length);
-  });
 }
 
 function setDisplay(total, modes, p, i) {
@@ -196,18 +186,20 @@ function generateResults(sign, similar, handshape, location, random, index) {
 
   let before = [];
   let after = [];
-  let similar_n = similar.length;
-  if (similar_n == 4) {
-    // TODO: Make the 0.4 a constant somehow
-    before = similar.concat(handshape.splice(0, Math.min(similar_n/0.4 - similar_n, index-similar_n)));
-    before = before.concat(location.splice(0, index - before.length ));
-    after = shuffle(handshape.concat(location));
-  } else if (similar_n == 2){
-    // Constant for quick fix
-    before = location.splice(0,99);
+  let similar_fill = similar.length - index;
+  let handshape_fill = handshape.length - Math.abs(similar_fill);
+  if (similar_fill > 0) {
+    before = similar.splice(0, index);
+    after = similar.concat(handshape).concat(location);
+  } else if (handshape_fill > 0) {
+    let fill = Math.abs(similar_fill);
+    before = similar.concat(handshape.splice(0,fill));
+    after = handshape.concat(location);
   } else {
-    before = handshape.splice(0,Math.floor(index/2)).concat(location.splice(0, Math.floor(index/2)));
-    after = shuffle(handshape.concat(location));
+    // Assuming similar + handshape + location > index
+    let fill = Math.abs(handshape_fill);
+    before = similar.concat(handshape).concat(location.splice(0,fill));
+    after = location;
   }
 
   shuffle(before);
@@ -234,9 +226,8 @@ function getParameter(p) {
 function getVideo() {
   loadJSON("flow.json", function(flow) {
     let i = getParameter("i");
-    let p = getParameter("p");
     if (i >= 0) {
-      let sign_order = LatinSquare(flow.Flow,p);
+      let sign_order = flow.Flow;
       var curr = sign_order[i];
     } else {
       var curr = flow.Sample;
@@ -306,126 +297,111 @@ function backToTop() {
   });
 }
 
-function computeValues(sign, similar, similar_h, similar_l, random, index) {
-  index = parseInt(index);
-  let i = getParameter("i");
-  let p = getParameter("p");
-  let sum_dcg = 0;
-  let sum_dcg1 = 0;
-  let sum_dcg5 = 0;
-  let sum_dcg10 = 0;
-  let sum_dcg20 = 0;
-
-  let sum_ndcg = 0;
-  let sum_ndcg1 = 0;
-  let sum_ndcg5 = 0;
-  let sum_ndcg10 = 0;
-  let sum_ndcg20 = 0;
-
-  let num_iterations = 10;
-  for (let c = 0;c<num_iterations;c++) {
-    let grid = generateResults(sign, similar.slice(), similar_h.slice(), similar_l.slice(), random.slice(), index);
-    let relevances = getRelevances(grid, similar, sign, similar_h, similar_l);
-    let dcg = computeDCG(relevances);
-    sum_dcg += dcg;
-    let ideal_dcg = computeDCG(relevances.slice().sort().reverse());
-    sum_ndcg += dcg/ideal_dcg;
-
-    let dcg1 = computeDCG(relevances,1);
-    sum_dcg1 += dcg1;
-    let dcg5 = computeDCG(relevances,5);
-    sum_dcg5 += dcg5;
-    let dcg10 = computeDCG(relevances,10);
-    sum_dcg10 += dcg10;
-    let dcg20 = computeDCG(relevances,20);
-    sum_dcg20 += dcg20;
-
-    let ideal_dcg1 = computeDCG(relevances.slice().sort().reverse(),1);
-    sum_ndcg1 += dcg1/ideal_dcg1;
-    let ideal_dcg5 = computeDCG(relevances.slice().sort().reverse(),5);
-    sum_ndcg5 += dcg5/ideal_dcg5;
-    let ideal_dcg10 = computeDCG(relevances.slice().sort().reverse(),10);
-    sum_ndcg10 += dcg10/ideal_dcg10;
-    let ideal_dcg20 = computeDCG(relevances.slice().sort().reverse(),20);
-    sum_ndcg20 += dcg20/ideal_dcg20;
-  }
-  let dcg = sum_dcg/num_iterations;
-  let dcg1 = sum_dcg1/num_iterations;
-  let dcg5 = sum_dcg5/num_iterations;
-  let dcg10 = sum_dcg10/num_iterations;
-  let dcg20 = sum_dcg20/num_iterations;
-
-  let ndcg = sum_ndcg/num_iterations;
-  let ndcg1 = sum_ndcg1/num_iterations;
-  let ndcg5 = sum_ndcg5/num_iterations;
-  let ndcg10 = sum_ndcg10/num_iterations;
-  let ndcg20 = sum_ndcg20/num_iterations;
-
-  let dcg_binary = 1.0/Math.log2(index+2.0);
-  create({i: i, p: p, sign: sign, values: {pos: index+1, bDCG: dcg_binary, dcg: dcg, dcg1: dcg1, dcg5: dcg5, dcg10: dcg10, dcg20: dcg20,  ndcg: ndcg, ndcg1: ndcg1, ndcg5: ndcg5, ndcg10: ndcg10, ndcg20: ndcg20}});
-}
-
-function computeDCG(relevances, max = 0) {
-  let value = 0;
-  relevances.forEach(function(rel,i) {
-    // value += rel/Math.log2(i+2.0);
-    if (i < max || max == 0) {
-        value += (Math.pow(2,rel)-1)/Math.log2(i+2.0);
-    }
-  });
-  return value;
-}
-
-function getRelevances(grid, similar, sign, similar_h, similar_l) {
-  let relevances = [];
-  grid.forEach(function(curr, i) {
-    var rel = 0;
-    if (sign == curr) {
-      rel = 1.0;
-    } else if (similar.indexOf(curr) >= 0) {
-      rel = .5;
-    } else if (similar_h.indexOf(curr) >= 0) {
-      rel = .25;
-    } else if (similar_l.indexOf(curr) >= 0) {
-      rel = .25;
-    }
-    relevances.push(rel);
-  });
-  return relevances;
-}
-
-function create(data) {
-    let options = {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-    }
-    return fetch('http://localhost:3004/dcg', options)
-      .then((response) => response.json)
-  }
+// function computeValues(sign, similar, similar_h, similar_l, random, index) {
+//   index = parseInt(index);
+//   let i = getParameter("i");
+//   let p = getParameter("p");
+//   let sum_dcg = 0;
+//   let sum_dcg1 = 0;
+//   let sum_dcg5 = 0;
+//   let sum_dcg10 = 0;
+//   let sum_dcg20 = 0;
+//
+//   let sum_ndcg = 0;
+//   let sum_ndcg1 = 0;
+//   let sum_ndcg5 = 0;
+//   let sum_ndcg10 = 0;
+//   let sum_ndcg20 = 0;
+//
+//   let num_iterations = 10;
+//   for (let c = 0;c<num_iterations;c++) {
+//     let grid = generateResults(sign, similar.slice(), similar_h.slice(), similar_l.slice(), random.slice(), index);
+//     let relevances = getRelevances(grid, similar, sign, similar_h, similar_l);
+//     let dcg = computeDCG(relevances);
+//     sum_dcg += dcg;
+//     let ideal_dcg = computeDCG(relevances.slice().sort().reverse());
+//     sum_ndcg += dcg/ideal_dcg;
+//
+//     let dcg1 = computeDCG(relevances,1);
+//     sum_dcg1 += dcg1;
+//     let dcg5 = computeDCG(relevances,5);
+//     sum_dcg5 += dcg5;
+//     let dcg10 = computeDCG(relevances,10);
+//     sum_dcg10 += dcg10;
+//     let dcg20 = computeDCG(relevances,20);
+//     sum_dcg20 += dcg20;
+//
+//     let ideal_dcg1 = computeDCG(relevances.slice().sort().reverse(),1);
+//     sum_ndcg1 += dcg1/ideal_dcg1;
+//     let ideal_dcg5 = computeDCG(relevances.slice().sort().reverse(),5);
+//     sum_ndcg5 += dcg5/ideal_dcg5;
+//     let ideal_dcg10 = computeDCG(relevances.slice().sort().reverse(),10);
+//     sum_ndcg10 += dcg10/ideal_dcg10;
+//     let ideal_dcg20 = computeDCG(relevances.slice().sort().reverse(),20);
+//     sum_ndcg20 += dcg20/ideal_dcg20;
+//   }
+//   let dcg = sum_dcg/num_iterations;
+//   let dcg1 = sum_dcg1/num_iterations;
+//   let dcg5 = sum_dcg5/num_iterations;
+//   let dcg10 = sum_dcg10/num_iterations;
+//   let dcg20 = sum_dcg20/num_iterations;
+//
+//   let ndcg = sum_ndcg/num_iterations;
+//   let ndcg1 = sum_ndcg1/num_iterations;
+//   let ndcg5 = sum_ndcg5/num_iterations;
+//   let ndcg10 = sum_ndcg10/num_iterations;
+//   let ndcg20 = sum_ndcg20/num_iterations;
+//
+//   let dcg_binary = 1.0/Math.log2(index+2.0);
+//   create({i: i, p: p, sign: sign, values: {pos: index+1, bDCG: dcg_binary, dcg: dcg, dcg1: dcg1, dcg5: dcg5, dcg10: dcg10, dcg20: dcg20,  ndcg: ndcg, ndcg1: ndcg1, ndcg5: ndcg5, ndcg10: ndcg10, ndcg20: ndcg20}});
+// }
+//
+// function computeDCG(relevances, max = 0) {
+//   let value = 0;
+//   relevances.forEach(function(rel,i) {
+//     // value += rel/Math.log2(i+2.0);
+//     if (i < max || max == 0) {
+//         value += (Math.pow(2,rel)-1)/Math.log2(i+2.0);
+//     }
+//   });
+//   return value;
+// }
+//
+// function getRelevances(grid, similar, sign, similar_h, similar_l) {
+//   let relevances = [];
+//   grid.forEach(function(curr, i) {
+//     var rel = 0;
+//     if (sign == curr) {
+//       rel = 1.0;
+//     } else if (similar.indexOf(curr) >= 0) {
+//       rel = .5;
+//     } else if (similar_h.indexOf(curr) >= 0) {
+//       rel = .25;
+//     } else if (similar_l.indexOf(curr) >= 0) {
+//       rel = .25;
+//     }
+//     relevances.push(rel);
+//   });
+//   return relevances;
+// }
+//
+// function create(data) {
+//     let options = {
+//       method: 'POST',
+//       headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(data)
+//     }
+//     return fetch('http://localhost:3004/dcg', options)
+//       .then((response) => response.json)
+//   }
 
 function __main__() {
   let path = getEndOfPath(window.location.pathname);
   let i = getParameter("i");
   loadJSON("flow.json", function(flow) {
     let sign_order = flow.Flow;
-    // Checking for numbers of similar / handshapes, delete later
-    var count = 0;
-    var index = 0;
-    console.log("Head: ", flow.Signs.Head.length)
-    console.log("Chest: ", flow.Signs.Chest.length)
-    sign_order.forEach(function(sign) {
-      var similar = sign.Similar.length;
-      console.log(index,sign.Sign, flow.Signs[sign.Handshape].length, similar);
-      if (similar == 0) {
-        count++;
-      }
-      index++;
-    });
-    console.log(count);
-    // End of block to be deleted
     if (sign_order.length <= i) {
       $('.content').html('<h1>Thank you</h1>');
     }
