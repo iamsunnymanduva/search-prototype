@@ -248,23 +248,30 @@ a {
 
 
 .toolbar {
-  height: 6rem;
+  height: 2rem;
   width: 100%;
   background-color: $background-color;
   align-items: center;
   justify-content: space-around;
+	position: fixed;
 
   .menu {
     width: 95%;
+		text-align: right;
 
     *:hover {
       opacity: .8;
     }
 
+		h1 {
+			margin: 0;
+		}
+
   }
 }
 
 .results-wrapper {
+	padding-top: 2rem;
   width: 90%;
   height: 100%;
   /* height: auto; */
@@ -272,12 +279,13 @@ a {
 
 .results-title {
   width: 100%;
-  height: 6rem;
-  flex-direction: column;
-  justify-content: center;
+  height: 4rem;
+  flex-direction: row;
+  justify-content: flex-start;
+	align-items: center;
 
   p {
-    padding-top: .5rem;
+    padding-left: .5rem;
   }
 }
 
@@ -287,19 +295,24 @@ a {
 }
 
 .results-grid {
-  width: 70%;
+  width: 95%;
   height: auto;
   flex-wrap: wrap;
   align-content: space-around;
 
-  &.center {
+  &.sample {
     justify-content: center;
+
+		.result-box:nth-child(2n) {
+			margin: 0;
+		}
   }
 
   &:not(.word) {
     .result-title p {
       width: 100%;
       padding: 5% 0 7.5% 0;
+			font-size: 1.25em;
     }
   }
 
@@ -337,8 +350,9 @@ a {
 }
 
 .result-box {
-  width: 32%;
-  margin-right: 2%;
+  width: 30%;
+  margin-right: 5%;
+	padding-bottom: 3%;
 
   &:nth-child(3n) {
     margin: 0;
@@ -348,8 +362,8 @@ a {
 .result-image {
   background-color: #b5b5b5;
   width: 100%;
-  padding-bottom: 66%;
-  background-position: center 20%;
+  padding-bottom: 80%;
+  background-position: center 25%;
   background-size: 160%;
 }
 
@@ -500,4 +514,45 @@ input:focus ~ .highlight {
 @keyframes inputHighlighter {
 	from { background:#5264AE; }
   to 	{ width:0; background:transparent; }
+}
+
+// CALIBRATION PAGE ––––––––––––––––––––
+
+.calibration-wrapper {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+	top: 0;
+	left: 0;
+
+	.picture-holder {
+		width: 100%;
+		padding-bottom: 58%;
+		background-image:url("../calibration/earth.png");
+		background-size: 100%;
+		background-repeat: no-repeat;
+		background-position: center;
+		box-sizing: border-box;
+	}
+
+	.instructions-wrapper {
+		position: absolute;
+		top: 0;
+		text-align: center;
+		width: 100%;
+		height: 58vw;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.instructions {
+			width: 60%;
+
+			p {
+				padding: .5rem;
+				font-size: 1.5rem;
+			}
+		}
+	}
 }
