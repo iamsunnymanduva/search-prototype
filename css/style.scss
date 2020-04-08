@@ -515,3 +515,44 @@ input:focus ~ .highlight {
 	from { background:#5264AE; }
   to 	{ width:0; background:transparent; }
 }
+
+// CALIBRATION PAGE ––––––––––––––––––––
+
+.calibration-wrapper {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+	top: 0;
+	left: 0;
+
+	.picture-holder {
+		width: 100%;
+		padding-bottom: 58%;
+		background-image:url("../calibration/earth.png");
+		background-size: 100%;
+		background-repeat: no-repeat;
+		background-position: center;
+		box-sizing: border-box;
+	}
+
+	.instructions-wrapper {
+		position: absolute;
+		top: 0;
+		text-align: center;
+		width: 100%;
+		height: 58vw;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.instructions {
+			width: 60%;
+
+			p {
+				padding: .5rem;
+				font-size: 1.5rem;
+			}
+		}
+	}
+}
