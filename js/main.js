@@ -101,7 +101,7 @@ function loadGrid() {
         var signs = shuffle(all_signs["Head"]);
       }
 
-      computeValues(sign, similar, similar_h, similar_l, random, index);
+      // computeValues(sign, similar, similar_h, similar_l, random, index);
 
       let staticImage = !($('.results-grid').hasClass('word') || $('.results-grid').hasClass('gif'));
       grid.forEach(function(name) {
@@ -297,105 +297,105 @@ function backToTop() {
   });
 }
 
-function computeValues(sign, similar, similar_h, similar_l, random, index) {
-  index = parseInt(index);
-  let i = getParameter("i");
-  let p = getParameter("p");
-  let sum_dcg = 0;
-  let sum_dcg1 = 0;
-  let sum_dcg5 = 0;
-  let sum_dcg10 = 0;
-  let sum_dcg20 = 0;
-
-  let sum_ndcg = 0;
-  let sum_ndcg1 = 0;
-  let sum_ndcg5 = 0;
-  let sum_ndcg10 = 0;
-  let sum_ndcg20 = 0;
-
-  let num_iterations = 10;
-  for (let c = 0;c<num_iterations;c++) {
-    let grid = generateResults(sign, similar.slice(), similar_h.slice(), similar_l.slice(), random.slice(), index);
-    let relevances = getRelevances(grid, similar, sign, similar_h, similar_l);
-    let dcg = computeDCG(relevances);
-    sum_dcg += dcg;
-    let ideal_dcg = computeDCG(relevances.slice().sort().reverse());
-    sum_ndcg += dcg/ideal_dcg;
-
-    let dcg1 = computeDCG(relevances,1);
-    sum_dcg1 += dcg1;
-    let dcg5 = computeDCG(relevances,5);
-    sum_dcg5 += dcg5;
-    let dcg10 = computeDCG(relevances,10);
-    sum_dcg10 += dcg10;
-    let dcg20 = computeDCG(relevances,20);
-    sum_dcg20 += dcg20;
-
-    let ideal_dcg1 = computeDCG(relevances.slice().sort().reverse(),1);
-    sum_ndcg1 += dcg1/ideal_dcg1;
-    let ideal_dcg5 = computeDCG(relevances.slice().sort().reverse(),5);
-    sum_ndcg5 += dcg5/ideal_dcg5;
-    let ideal_dcg10 = computeDCG(relevances.slice().sort().reverse(),10);
-    sum_ndcg10 += dcg10/ideal_dcg10;
-    let ideal_dcg20 = computeDCG(relevances.slice().sort().reverse(),20);
-    sum_ndcg20 += dcg20/ideal_dcg20;
-  }
-  let dcg = sum_dcg/num_iterations;
-  let dcg1 = sum_dcg1/num_iterations;
-  let dcg5 = sum_dcg5/num_iterations;
-  let dcg10 = sum_dcg10/num_iterations;
-  let dcg20 = sum_dcg20/num_iterations;
-
-  let ndcg = sum_ndcg/num_iterations;
-  let ndcg1 = sum_ndcg1/num_iterations;
-  let ndcg5 = sum_ndcg5/num_iterations;
-  let ndcg10 = sum_ndcg10/num_iterations;
-  let ndcg20 = sum_ndcg20/num_iterations;
-
-  let dcg_binary = 1.0/Math.log2(index+2.0);
-  create({i: i, p: p, sign: sign, values: {pos: index+1, bDCG: dcg_binary, dcg: dcg, dcg1: dcg1, dcg5: dcg5, dcg10: dcg10, dcg20: dcg20,  ndcg: ndcg, ndcg1: ndcg1, ndcg5: ndcg5, ndcg10: ndcg10, ndcg20: ndcg20}});
-}
-
-function computeDCG(relevances, max = 0) {
-  let value = 0;
-  relevances.forEach(function(rel,i) {
-    // value += rel/Math.log2(i+2.0);
-    if (i < max || max == 0) {
-        value += (Math.pow(2,rel)-1)/Math.log2(i+2.0);
-    }
-  });
-  return value;
-}
-
-function getRelevances(grid, similar, sign, similar_h, similar_l) {
-  let relevances = [];
-  grid.forEach(function(curr, i) {
-    var rel = 0;
-    if (sign == curr) {
-      rel = 1.0;
-    } else if (similar.indexOf(curr) >= 0) {
-      rel = .5;
-    } else if (similar_h.indexOf(curr) >= 0) {
-      rel = .25;
-    } else if (similar_l.indexOf(curr) >= 0) {
-      rel = .25;
-    }
-    relevances.push(rel);
-  });
-  return relevances;
-}
-
-function create(data) {
-    let options = {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-    }
-    return fetch('http://localhost:3004/dcg', options)
-      .then((response) => response.json)
-  }
+// function computeValues(sign, similar, similar_h, similar_l, random, index) {
+//   index = parseInt(index);
+//   let i = getParameter("i");
+//   let p = getParameter("p");
+//   let sum_dcg = 0;
+//   let sum_dcg1 = 0;
+//   let sum_dcg5 = 0;
+//   let sum_dcg10 = 0;
+//   let sum_dcg20 = 0;
+//
+//   let sum_ndcg = 0;
+//   let sum_ndcg1 = 0;
+//   let sum_ndcg5 = 0;
+//   let sum_ndcg10 = 0;
+//   let sum_ndcg20 = 0;
+//
+//   let num_iterations = 10;
+//   for (let c = 0;c<num_iterations;c++) {
+//     let grid = generateResults(sign, similar.slice(), similar_h.slice(), similar_l.slice(), random.slice(), index);
+//     let relevances = getRelevances(grid, similar, sign, similar_h, similar_l);
+//     let dcg = computeDCG(relevances);
+//     sum_dcg += dcg;
+//     let ideal_dcg = computeDCG(relevances.slice().sort().reverse());
+//     sum_ndcg += dcg/ideal_dcg;
+//
+//     let dcg1 = computeDCG(relevances,1);
+//     sum_dcg1 += dcg1;
+//     let dcg5 = computeDCG(relevances,5);
+//     sum_dcg5 += dcg5;
+//     let dcg10 = computeDCG(relevances,10);
+//     sum_dcg10 += dcg10;
+//     let dcg20 = computeDCG(relevances,20);
+//     sum_dcg20 += dcg20;
+//
+//     let ideal_dcg1 = computeDCG(relevances.slice().sort().reverse(),1);
+//     sum_ndcg1 += dcg1/ideal_dcg1;
+//     let ideal_dcg5 = computeDCG(relevances.slice().sort().reverse(),5);
+//     sum_ndcg5 += dcg5/ideal_dcg5;
+//     let ideal_dcg10 = computeDCG(relevances.slice().sort().reverse(),10);
+//     sum_ndcg10 += dcg10/ideal_dcg10;
+//     let ideal_dcg20 = computeDCG(relevances.slice().sort().reverse(),20);
+//     sum_ndcg20 += dcg20/ideal_dcg20;
+//   }
+//   let dcg = sum_dcg/num_iterations;
+//   let dcg1 = sum_dcg1/num_iterations;
+//   let dcg5 = sum_dcg5/num_iterations;
+//   let dcg10 = sum_dcg10/num_iterations;
+//   let dcg20 = sum_dcg20/num_iterations;
+//
+//   let ndcg = sum_ndcg/num_iterations;
+//   let ndcg1 = sum_ndcg1/num_iterations;
+//   let ndcg5 = sum_ndcg5/num_iterations;
+//   let ndcg10 = sum_ndcg10/num_iterations;
+//   let ndcg20 = sum_ndcg20/num_iterations;
+//
+//   let dcg_binary = 1.0/Math.log2(index+2.0);
+//   create({i: i, p: p, sign: sign, values: {pos: index+1, bDCG: dcg_binary, dcg: dcg, dcg1: dcg1, dcg5: dcg5, dcg10: dcg10, dcg20: dcg20,  ndcg: ndcg, ndcg1: ndcg1, ndcg5: ndcg5, ndcg10: ndcg10, ndcg20: ndcg20}});
+// }
+//
+// function computeDCG(relevances, max = 0) {
+//   let value = 0;
+//   relevances.forEach(function(rel,i) {
+//     // value += rel/Math.log2(i+2.0);
+//     if (i < max || max == 0) {
+//         value += (Math.pow(2,rel)-1)/Math.log2(i+2.0);
+//     }
+//   });
+//   return value;
+// }
+//
+// function getRelevances(grid, similar, sign, similar_h, similar_l) {
+//   let relevances = [];
+//   grid.forEach(function(curr, i) {
+//     var rel = 0;
+//     if (sign == curr) {
+//       rel = 1.0;
+//     } else if (similar.indexOf(curr) >= 0) {
+//       rel = .5;
+//     } else if (similar_h.indexOf(curr) >= 0) {
+//       rel = .25;
+//     } else if (similar_l.indexOf(curr) >= 0) {
+//       rel = .25;
+//     }
+//     relevances.push(rel);
+//   });
+//   return relevances;
+// }
+//
+// function create(data) {
+//     let options = {
+//       method: 'POST',
+//       headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(data)
+//     }
+//     return fetch('http://localhost:3004/dcg', options)
+//       .then((response) => response.json)
+//   }
 
 function __main__() {
   let path = getEndOfPath(window.location.pathname);
