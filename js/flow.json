@@ -600,6 +600,32 @@
       "Similar": [
 
       ]
+    },
+    {
+      "Sign": "Australia",
+      "Handshape": "open_8",
+      "Location": "Chest",
+      "Similar": [
+        "Hate",
+        "Awful"
+      ]
+    },
+    {
+      "Sign": "Bridge",
+      "Handshape": "v",
+      "Location": "Chest",
+      "Similar": [
+        "Predict"
+      ]
+    },
+    {
+      "Sign": "Subway",
+      "Handshape": "y",
+      "Location": "Chest",
+      "Similar": [
+        "Country",
+        "Whale"
+      ]
     }
   ]
 }
