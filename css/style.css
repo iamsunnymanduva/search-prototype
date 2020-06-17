@@ -21,6 +21,17 @@ a {
   display: flex;
 }
 
+.title-container{
+  display: flex;
+  flex-flow:row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter{
+  min-width: 200px;
+}
+
 .content, .look-up, .recording-space, .video-wrapper,
 .code {
   flex-direction: column;
